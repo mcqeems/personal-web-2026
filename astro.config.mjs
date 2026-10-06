@@ -1,19 +1,22 @@
 import { defineConfig } from 'astro/config';
 
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import compress from 'astro-compress';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
     output: 'static',
     trailingSlash: 'always',
-    site: 'https://devidev.io',
+    site: 'https://mustaqim.web.id',
 
     // Single page, no prefetch needed
     prefetch: false,
 
+    vite: {
+        plugins: [tailwindcss()]
+    },
+
     integrations: [
-        tailwind(),
         sitemap(),
         compress({
             CSS: true,

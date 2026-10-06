@@ -1,0 +1,56 @@
+---
+import { Code } from 'astro:components';
+
+const code = `export interface Developer {
+    name: string;
+    skills: string[];
+    interests: string[];
+}
+
+export interface TechStack {
+    devOps: string[];
+    backend: string[];
+    frontend: string[];
+}
+
+export interface Education {
+    school: string;
+    degree: string;
+    period: string;
+}
+
+export type ContactType = 'github' | 'twitter' | 'linkedIn' | 'instagram' | 'email';
+`;
+---
+
+<Code
+    code={code}
+    lang="ts"
+    wrap={true}
+/>
+
+<style is:global>
+    @reference "../styles/global.css";
+
+    /* Custom styling for code block line numbers */
+    pre.astro-code {
+        @apply bg-transparent!;
+    }
+
+    pre.astro-code code {
+        @apply block;
+        counter-reset: step;
+        counter-increment: step 0;
+    }
+
+    pre.astro-code code .line {
+        @apply relative;
+    }
+
+    pre.astro-code code .line::before {
+        content: counter(step);
+        counter-increment: step;
+        @apply text-gray-600 pr-2;
+    }
+
+</style>

@@ -1,3 +1,4 @@
 User-agent: *
+Allow: /
 
-Sitemap: https://devidev.io/sitemap-index.xml
+Sitemap: https://mustaqim.web.id/sitemap-index.xml

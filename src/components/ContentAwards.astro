@@ -1,0 +1,146 @@
+---
+import codingDay from "../assets/awards/coding_day.webp";
+import genAi from "../assets/awards/gen-ai.webp";
+import idCamp from "../assets/awards/idcamp.webp";
+import microsoft from "../assets/awards/microsoft.webp";
+import techcomfest from "../assets/awards/techcomfest.webp";
+
+const imgSrc = (img: ImageMetadata | string): string =>
+  typeof img === "string" ? img : img.src;
+
+interface Award {
+  title: string;
+  description: string;
+  image?: ImageMetadata | string;
+  link?: string;
+}
+
+const awards: Award[] = [
+  {
+    title: "Winner — Microsoft Online Hackathon 2025",
+    description:
+      "Awarded as one of the winner of the online hackathon issued by Dicoding Indonesia as part of the Microsoft elevAite 2025 program, from 200+ participant only 4 selected as the winner.",
+    image: microsoft,
+    link: "https://dicoding.elevaite.id/articles/93/selamat-kepada-pemenang-microsoft-online-hackathon-2025-elevaite-with-dicoding",
+  },
+  {
+    title: "Winner — IDCamp 2025 Developer Challenge #1",
+    description:
+      "Awarded as one of the winner of IDCamp x Indosat Ooredoo Hutchison by Dicoding Developer Challenge 2025 from 150+ participants.",
+    image: idCamp,
+    link: "https://idcamp.ioh.co.id/news/1944/selamat-kepada-pemenang-idcamp-2024-developer-challenge-1",
+  },
+  {
+    title: "Finalist — Techcomfest 2026",
+    description:
+      "Achieved top 5 out of 10 finalist from 150+ teams, competing with giants national institutions and universities .",
+    image: techcomfest,
+  },
+  {
+    title: "1st Winner — Coding Day",
+    description:
+      "Achieved 1st place at Coding Day Web Development Competition.",
+    image: codingDay,
+  },
+  {
+    title: "Top 20 Gen-AI Video Fest Competition",
+    description:
+      "Achieved top 20 of Generative AI Video Competition issued by Codepolitan and RuangAI.",
+    image: genAi,
+  },
+];
+---
+
+<div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {awards.map((award, i) => (
+      <div class="flex flex-col justify-between items-start border border-gray-700 rounded-lg p-4 bg-black">
+        <div>
+          {award.image ? (
+            <a href={`#award-img-${i}`} class="w-full">
+              <img
+                src={imgSrc(award.image)}
+                alt={award.title}
+                loading="lazy"
+                class="w-full h-40 object-cover rounded-lg mb-4 cursor-zoom-in"
+              />
+            </a>
+          ) : null}
+
+          <h3 class="text-xl font-semibold text-white mb-2">{award.title}</h3>
+
+          <p class="text-gray-400">{award.description}</p>
+        </div>
+
+        {award.link ? (
+          <a
+            href={award.link}
+            target="_blank"
+            title={award.title}
+            class="w-full px-4 py-2.5 mt-4 text-center border border-gray-600 rounded-lg hover:text-primary hover:border-primary"
+          >
+            Open Link
+          </a>
+        ) : null}
+      </div>
+    ))}
+  </div>
+
+  {awards.map((award, i) =>
+    award.image ? (
+      <div id={`award-img-${i}`} class="lightbox">
+        <a
+          href="#"
+          class="lightbox-backdrop"
+          aria-label="Close image preview"
+        ></a>
+        <img src={imgSrc(award.image)} alt={award.title} class="lightbox-img" />
+        <a href="#" class="lightbox-x" aria-label="Close">
+          ✕
+        </a>
+      </div>
+    ) : null,
+  )}
+</div>
+
+<style is:global>
+  /* CSS-only lightbox: thumbnail links to #award-img-N, overlay shows via :target */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .lightbox:target {
+    display: flex;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    cursor: zoom-out;
+  }
+
+  .lightbox-img {
+    position: relative;
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+
+  .lightbox-x {
+    position: absolute;
+    top: 1rem;
+    right: 1.25rem;
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    text-decoration: none;
+  }
+</style>

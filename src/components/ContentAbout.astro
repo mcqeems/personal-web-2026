@@ -1,56 +1,71 @@
 ---
 import { Code } from 'astro:components';
 
-const code = `interface Developer {
-    name: string;
-    skills: string[];
-    interests: string[];
-};
-
-interface TechStack {
-    devOps: string[];
-    backend: string[];
-   frontend: string[];
-};
-
-type ContactType = 'github' | 'twitter' | 'linkedIn' | 'xing' | 'email';
+const code = `import type { ContactType, Developer, Education, TechStack } from './about.types';
 
 const techStack: TechStack = {
     devOps: [
-        'GitLab',
+        'Git',
         'GitHub',
-        'Cloudflare',
-        'Docker'
+        'Docker',
+        'Vercel',
+        'AWS',
+        'Azure'
     ],
     frontend: [
-        'Angular',
-        'JavaScript',
         'TypeScript',
-        'TailwindCSS',
-        'PrimeNG',
+        'JavaScript',
+        'React',
+        'Next.js',
         'Astro',
-        'Ionic',
-        'Stencil',
-        'Capacitor',
-        'SCSS',
-        'Markdown',
-        'WordPress'
+        'TailwindCSS'
     ],
     backend: [
-        'Supabase',
         'Node.js',
         'Bun',
-        'Deno',
+        'Nest.js',
+        'Express.js',
+        'Elysia.js',
         'PostgreSQL',
         'MySQL',
-        'S3 Storage',
-        'Resend'
+        'MongoDB',
+        'Supabase',
+        'Prisma'
     ]
+};
+
+const programmingLanguages: string[] = [
+    'TypeScript',
+    'JavaScript',
+    'Python',
+    'C++',
+    'Java',
+    'Dart',
+    'Kotlin'
+];
+
+const education: Education[] = [
+    {
+        school: 'Universitas Darussalam Gontor',
+        degree: 'Bachelor of Information Technology',
+        period: '2024 - 2028'
+    },
+    {
+        school: 'Darussalam Gontor Modern Boarding School',
+        degree: 'Middle & High School',
+        period: '2018 - 2024'
+    }
+];
+
+const languages: Record<string, string> = {
+    Indonesian: 'Native',
+    English: 'Full Professional',
+    Arabic: 'Full Professional'
 };
 
 // Developer profile
 const me: Developer = {
-    name: 'Dejan Vi.',
+    name: 'Mustaqim Nawahhudi Ma\\'arif',
     skills: [
         ...techStack.devOps,
         ...techStack.backend,
@@ -58,11 +73,11 @@ const me: Developer = {
     ],
     interests: [
         'Open Source',
-        'Security',
-        'Privacy',
-        'Performance',
-        'Self-Hosting',
-        'Networking'
+        'Web Development',
+        'Cloud Computing',
+        'AI Engineering',
+        'Networking',
+        'Performance'
     ]
 };
 
@@ -70,15 +85,15 @@ const me: Developer = {
 const contact = (type: ContactType): string => {
     switch (type) {
         case 'github':
-            return 'https://github.com/devidevio';
+            return 'https://github.com/mcqeems';
         case 'twitter':
-            return 'https://x.com/devidev_io';
+            return 'https://x.com/mcqeems';
         case 'linkedIn':
-            return 'https://www.linkedin.com/in/dejan-vi';
-        case 'xing':
-            return 'https://www.xing.com/profile/Dejan_Vintonjiv';
+            return 'https://www.linkedin.com/in/mcqeems';
+        case 'instagram':
+            return 'https://www.instagram.com/mcqeems/';
         case 'email':
-            return 'hi@devidev.io';
+            return 'mcqeemsofficial@gmail.com';
         default:
             return 'Send fax.';
     }
@@ -89,15 +104,16 @@ const contact = (type: ContactType): string => {
 
 <Code
     code={code}
-    lang="js"
+    lang="ts"
     wrap={true}
 />
 
 <style is:global>
+    @reference "../styles/global.css";
 
     /* Custom styling for code block line numbers */
     pre.astro-code {
-        @apply bg-transparent !important;
+        @apply bg-transparent!;
     }
 
     pre.astro-code code {
