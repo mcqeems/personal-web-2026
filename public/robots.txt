@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mustaqim.web.id/sitemap-index.xml
+Sitemap: https://www.mustaqim.web.id/sitemap-index.xml

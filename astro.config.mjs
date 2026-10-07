@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
     output: 'static',
     trailingSlash: 'always',
-    site: 'https://mustaqim.web.id',
+    site: 'https://www.mustaqim.web.id',
 
     // Single page, no prefetch needed
     prefetch: false,
